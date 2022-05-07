@@ -5,6 +5,7 @@ from flask import request, jsonify
 from ..models.users import Users, user_schema, users_schema
 
 def post_user():
+    
     username = request.json['username']
     password = request.json['password']
     name = request.json['name']
@@ -14,7 +15,16 @@ def post_user():
         db.session.add(user)
         db.session.commit()
         result = user_schema.dump(user)
-        return jsonify({"message":"successfuly registered", "data": result}), 201
+        return jsonify({"message":"successfully registered", "data": result}), 201
     except:
         return jsonify({"message":"unable to create","data":{}}), 500
+
+def get_user():
+
+    users = Users.query.all()
+    if users:
+        result = users_schema.dump(users)
+        return jsonify({"message":"successfully fetched", "data": result})
+    
+    return jsonify({"message":"nothing found", "data":{}})
 

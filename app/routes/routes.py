@@ -9,3 +9,7 @@ def root():
 @app.route('/users', methods=['POST'])
 def post_user():
     return users.post_user()
+
+@app.route('/users', methods=['GET'])
+def get_user():
+    return users.get_user()

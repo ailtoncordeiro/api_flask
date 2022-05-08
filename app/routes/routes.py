@@ -18,3 +18,7 @@ def post_user():
 @app.route('/users', methods=['GET'])
 def get_user():
     return users.get_user()
+
+@app.route('/users/<id>', methods=['PUT'])
+def update_user(id):
+    return users.update_user(id)

@@ -70,3 +70,10 @@ def delete_user(id):
             return jsonify({'message': 'successfully deleted', 'data': result}), 200
         except:
             return jsonify({'message': 'unable to delete', 'data': {}}), 500
+
+def user_by_username(username):
+    """ Get user by username """
+    try:
+        return Users.query.filter(Users.username == username).one()
+    except:
+        return None
